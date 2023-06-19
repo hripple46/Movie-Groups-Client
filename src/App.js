@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Message from "./Message.js";
 
 function App() {
   const [data, setData] = useState({});
@@ -21,8 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>My first API</h1>
-      <p>{data.message}</p>
+      <Message />
     </div>
   );
 }
