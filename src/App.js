@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Message from "./Message.js";
+import Signup from "./Signup.js";
 
 function App() {
   const [data, setData] = useState({});
@@ -42,6 +43,7 @@ function App() {
       <h1>Messages</h1>
       {renderMessages()}
       <Message />
+      <Signup />
     </div>
   );
 }
