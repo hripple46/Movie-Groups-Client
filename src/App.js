@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Message from "./Message.js";
 import Signup from "./Signup.js";
+import Login from "./Login.js";
 
 function App() {
   const [data, setData] = useState({});
@@ -49,8 +50,8 @@ function App() {
       ) : (
         <div>
           <Message />
-
-          <Signup onLogin={() => setIsLoggedIn(true)} />
+          <Login onLogin={() => setIsLoggedIn(true)} />
+          <Signup />
         </div>
       )}
     </div>
