@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Signup() {
+export default function Signup({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,6 +13,7 @@ export default function Signup() {
     });
     setUsername("");
     setPassword("");
+    onLogin(); //this is a prop that is passed in from App.js and is a function that sets the isLoggedIn state to true
   };
 
   return (

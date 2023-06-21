@@ -7,9 +7,10 @@ import Signup from "./Signup.js";
 function App() {
   const [data, setData] = useState({});
   const [messages, setMessages] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     fetchMessages();
-  }, []);
+  }, [isLoggedIn]);
 
   const fetchMessages = async () => {
     try {
@@ -40,10 +41,18 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Messages</h1>
-      {renderMessages()}
-      <Message />
-      <Signup />
+      {isLoggedIn ? (
+        <div>
+          <h1>Messages</h1>
+          {renderMessages()}
+        </div>
+      ) : (
+        <div>
+          <Message />
+
+          <Signup onLogin={() => setIsLoggedIn(true)} />
+        </div>
+      )}
     </div>
   );
 }

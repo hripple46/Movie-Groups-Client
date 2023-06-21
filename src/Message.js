@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Message() {
+export default function Message({}) {
   const [text, setText] = useState("");
 
   const handleSubmit = async (e) => {
