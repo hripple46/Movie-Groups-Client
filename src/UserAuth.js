@@ -11,13 +11,26 @@ export default function Login({ onLogin }) {
     console.log(form);
     e.preventDefault();
     if (form === "login") {
+      const user = {
+        username: username,
+        password: password,
+      };
+      const response = await fetch("http://localhost:3000/api/users/login", {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const responseJson = await response.json();
+      console.log(responseJson);
       setMessage("Logged In!");
     } else {
       setMessage("Signed up!");
     }
   };
 
-  const handleLoginClick = () => {
+  const handleLoginClick = async () => {
     setMessage(null);
     setForm("login");
   };
