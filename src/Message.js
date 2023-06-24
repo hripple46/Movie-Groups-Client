@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Message({}) {
+export default function Message() {
   const [text, setText] = useState("");
 
   const handleSubmit = async (e) => {
@@ -21,15 +21,15 @@ export default function Message({}) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label for="text">Message:</label>
+        <label htmlFor="message">Message:</label>
         <input
           type="text"
           id="text"
-          name="text"
+          name="message"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button type="submit">Send</button>
+        <button type="submit">Post</button>
       </form>
     </div>
   );

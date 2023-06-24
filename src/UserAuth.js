@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [form, setForm] = useState(null);
@@ -24,7 +23,9 @@ export default function Login({ onLogin }) {
       });
       const responseJson = await response.json();
       console.log(responseJson);
+      document.cookie = "token=" + JSON.stringify(responseJson);
       setMessage("Logged In!");
+      location.reload();
     } else {
       setMessage("Signed up!");
     }
@@ -44,6 +45,10 @@ export default function Login({ onLogin }) {
     if (message) {
       return <p>{message}</p>;
     }
+  };
+  const userSignout = () => {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    location.reload();
   };
 
   return (
@@ -93,6 +98,7 @@ export default function Login({ onLogin }) {
         </form>
       )}
       {showMessage()}
+      <button onClick={userSignout}>Signout</button>
     </div>
   );
 }
