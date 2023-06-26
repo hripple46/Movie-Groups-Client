@@ -4,6 +4,7 @@ export default function DashBoard() {
   const [user, setUser] = useState("Not Signed In");
   const [group, setGroup] = useState({});
   const [joinGroupName, setJoinGroupName] = useState();
+  //const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     console.log(document.cookie);
@@ -17,8 +18,8 @@ export default function DashBoard() {
   }
 
   const getUserName = async () => {
-    let cookieValue = JSON.parse(getCookie("token"));
-    let token = cookieValue.token;
+    let cookieValue = getCookie("token");
+    let token = cookieValue;
     console.log("Token:  " + token);
     fetch("http://localhost:3000/api/message", {
       method: "POST",
@@ -42,8 +43,8 @@ export default function DashBoard() {
       alert("You are not signed in.");
       return;
     }
-    let cookieValue = JSON.parse(getCookie("token"));
-    let token = cookieValue.token;
+    let cookieValue = getCookie("token");
+    let token = cookieValue;
 
     console.log("Token:  " + token);
     fetch("http://localhost:3000/api/groups", {
@@ -66,8 +67,8 @@ export default function DashBoard() {
       alert("You are not signed in.");
       return;
     }
-    let cookieValue = JSON.parse(getCookie("token"));
-    let token = cookieValue.token;
+    let cookieValue = getCookie("token");
+    let token = cookieValue;
     fetch("http://localhost:3000/api/groups/join", {
       method: "POST",
       body: JSON.stringify(joinGroupName),

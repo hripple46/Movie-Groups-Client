@@ -23,7 +23,7 @@ export default function Login() {
       });
       const responseJson = await response.json();
       console.log(responseJson);
-      document.cookie = "token=" + JSON.stringify(responseJson);
+      document.cookie = "token=" + responseJson.token;
       setMessage("Logged In!");
       location.reload();
     } else {
