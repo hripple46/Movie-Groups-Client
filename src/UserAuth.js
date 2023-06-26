@@ -5,6 +5,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [form, setForm] = useState(null);
   const [message, setMessage] = useState(null);
+  const [adminGroup, setAdminGroup] = useState([]);
 
   const handleSubmit = async (e) => {
     console.log(form);
@@ -25,6 +26,8 @@ export default function Login() {
       console.log(responseJson);
       document.cookie = "token=" + responseJson.token;
       setMessage("Logged In!");
+      setAdminGroup(responseJson.user.admin);
+      console.log(adminGroup);
       location.reload();
     } else {
       setMessage("Signed up!");

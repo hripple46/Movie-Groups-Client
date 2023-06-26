@@ -4,12 +4,21 @@ export default function DashBoard() {
   const [user, setUser] = useState("Not Signed In");
   const [group, setGroup] = useState({});
   const [joinGroupName, setJoinGroupName] = useState();
+  const [adminGroups, setAdminGroups] = useState(null);
+
   //const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     console.log(document.cookie);
     getUserName();
   }, []);
+
+  function showPendingUsers() {
+    if (adminGroups) {
+      console.log("Hello Admin, here are your groups: " + adminGroups);
+    }
+  }
+  showPendingUsers();
 
   function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -32,6 +41,7 @@ export default function DashBoard() {
         return response.json();
       })
       .then((res) => {
+        setAdminGroups(res.user.admin);
         setUser(res.username);
       });
   };
