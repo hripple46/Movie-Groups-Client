@@ -93,7 +93,8 @@ export default function DashBoard() {
 
   return (
     <div>
-      Hello, {user}
+      {user !== "Not Signed In" && <div>Hello, {user}</div>}
+
       <form>
         <label htmlFor="groupName">Group Name: </label>
         <input

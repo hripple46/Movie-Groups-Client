@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 
-export default function Login() {
+export default function Login({ loggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [form, setForm] = useState(null);
@@ -56,52 +57,59 @@ export default function Login() {
 
   return (
     <div>
-      <button onClick={handleLoginClick}>Login</button>
-      <button onClick={handleSignupClick}>Signup</button>
-      {form === "login" && (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Login</button>
-        </form>
+      {!loggedIn ? (
+        <div>
+          <button onClick={handleLoginClick}>Login</button>
+          <button onClick={handleSignupClick}>Signup</button>
+          {form === "login" && (
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label htmlFor="password">Password:</label>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="submit">Login</button>
+            </form>
+          )}
+          {form === "signup" && (
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label htmlFor="password">Password:</label>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="submit">Signup</button>
+            </form>
+          )}
+        </div>
+      ) : (
+        <div>
+          {showMessage()}
+          <button onClick={userSignout}>Signout</button>
+        </div>
       )}
-      {form === "signup" && (
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="text"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Signup</button>
-        </form>
-      )}
-      {showMessage()}
-      <button onClick={userSignout}>Signout</button>
     </div>
   );
 }
