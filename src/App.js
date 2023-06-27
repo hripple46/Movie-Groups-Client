@@ -38,9 +38,9 @@ function App() {
       });
   };
   return (
-    <div>
+    <div className="h-full w-full">
       <UserAuth loggedIn={loggedIn} />
-      <DashBoard />
+      <DashBoard loggedIn={loggedIn} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 
-export default function DashBoard() {
+export default function DashBoard({ loggedIn }) {
   const [user, setUser] = useState("Not Signed In");
   const [group, setGroup] = useState({});
   const [joinGroupName, setJoinGroupName] = useState();
@@ -93,26 +94,44 @@ export default function DashBoard() {
 
   return (
     <div>
-      {user !== "Not Signed In" && <div>Hello, {user}</div>}
+      {loggedIn && (
+        <>
+          {user !== "Not Signed In" && <div>Hello, {user}</div>}
 
-      <form>
-        <label htmlFor="groupName">Group Name: </label>
-        <input
-          type="text"
-          name="groupName"
-          onChange={(e) => setGroup({ groupName: e.target.value })}
-        ></input>
-        <button type="submit" onClick={submitNewGroup}></button>
-      </form>
-      <form>
-        <label htmlFor="joinGroup">Group Name: </label>
-        <input
-          type="text"
-          name="joinGroup"
-          onChange={(e) => setJoinGroupName({ joinGroupName: e.target.value })}
-        ></input>
-        <button type="submit" onClick={joinGroup}></button>
-      </form>
+          <form>
+            <label htmlFor="groupName">Group Name: </label>
+            <input
+              type="text"
+              name="groupName"
+              onChange={(e) => setGroup({ groupName: e.target.value })}
+            ></input>
+            <button
+              className="w-24 h-8 bg-green-300"
+              type="submit"
+              onClick={submitNewGroup}
+            >
+              Create
+            </button>
+          </form>
+          <form>
+            <label htmlFor="joinGroup">Group Name: </label>
+            <input
+              type="text"
+              name="joinGroup"
+              onChange={(e) =>
+                setJoinGroupName({ joinGroupName: e.target.value })
+              }
+            ></input>
+            <button
+              className="w-24 h-8 bg-green-300"
+              type="submit"
+              onClick={joinGroup}
+            >
+              Join
+            </button>
+          </form>
+        </>
+      )}
     </div>
   );
 }

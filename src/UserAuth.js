@@ -56,52 +56,84 @@ export default function Login({ loggedIn }) {
   };
 
   return (
-    <div>
+    <div className={`w-full ${!loggedIn ? "h-full" : ""}`}>
       {!loggedIn ? (
-        <div>
-          <button onClick={handleLoginClick}>Login</button>
-          <button onClick={handleSignupClick}>Signup</button>
+        <div className="w-full h-full flex items-center justify-center">
+          {!form && (
+            <>
+              <button
+                className="m-2 h-8 w-24 bg-green-300"
+                onClick={handleLoginClick}
+              >
+                Login
+              </button>
+              <button
+                className="m-2 h-8 w-24 bg-green-300"
+                onClick={handleSignupClick}
+              >
+                Signup
+              </button>
+            </>
+          )}
           {form === "login" && (
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <label htmlFor="password">Password:</label>
-              <input
-                type="text"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button type="submit">Login</button>
-            </form>
+            <>
+              <button
+                className="h-8 w-24 bg-red-200"
+                onClick={() => setForm(null)}
+              >
+                Back
+              </button>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="text"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="submit">Login</button>
+              </form>
+            </>
           )}
           {form === "signup" && (
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <label htmlFor="password">Password:</label>
-              <input
-                type="text"
-                id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button type="submit">Signup</button>
-            </form>
+            <>
+              <button
+                className="h-8 w-24 bg-red-200"
+                onClick={() => setForm(null)}
+              >
+                Back
+              </button>
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="text"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button className="h-24 w-8 bg-green-300" type="submit">
+                  Signup
+                </button>
+              </form>
+            </>
           )}
         </div>
       ) : (
