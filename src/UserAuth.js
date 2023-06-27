@@ -78,17 +78,21 @@ export default function Login({ loggedIn }) {
           {form === "login" && (
             <>
               <button
-                className="h-8 w-24 bg-red-200"
+                className="h-8 w-24 bg-red-200 absolute left-2 top-2"
                 onClick={() => setForm(null)}
               >
                 Back
               </button>
-              <form onSubmit={handleSubmit}>
+              <form
+                className="border-black border-2 flex flex-col p-2"
+                onSubmit={handleSubmit}
+              >
                 <label htmlFor="username">Username:</label>
                 <input
                   type="text"
                   id="username"
                   name="username"
+                  placeholder="Your Username Here"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -97,27 +101,37 @@ export default function Login({ loggedIn }) {
                   type="text"
                   id="password"
                   name="password"
+                  placeholder="Your Password Here"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Login</button>
+                <button
+                  className="m-2 h-8 w-24 bg-green-300 self-center"
+                  type="submit"
+                >
+                  Login
+                </button>
               </form>
             </>
           )}
           {form === "signup" && (
             <>
               <button
-                className="h-8 w-24 bg-red-200"
+                className="h-8 w-24 bg-red-200 absolute left-2 top-2"
                 onClick={() => setForm(null)}
               >
                 Back
               </button>
-              <form onSubmit={handleSubmit}>
+              <form
+                className="border-black border-2 flex flex-col p-2"
+                onSubmit={handleSubmit}
+              >
                 <label htmlFor="username">Username:</label>
                 <input
                   type="text"
                   id="username"
                   name="username"
+                  placeholder="Your Username Here"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -126,10 +140,14 @@ export default function Login({ loggedIn }) {
                   type="text"
                   id="password"
                   name="password"
+                  placeholder="Your Password Here"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className="h-24 w-8 bg-green-300" type="submit">
+                <button
+                  className="h-8 w-24 bg-green-300 self-center"
+                  type="submit"
+                >
                   Signup
                 </button>
               </form>
