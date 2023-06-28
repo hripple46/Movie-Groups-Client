@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
+import Admin from "./Admin";
 
 export default function DashBoard({ loggedIn }) {
   const [user, setUser] = useState("Not Signed In");
   const [group, setGroup] = useState({});
   const [joinGroupName, setJoinGroupName] = useState();
-  const [adminGroups, setAdminGroups] = useState(null);
+  const [adminGroups, setAdminGroups] = useState([]);
 
   //const [userId, setUserId] = useState(null);
 
@@ -13,13 +14,6 @@ export default function DashBoard({ loggedIn }) {
     console.log(document.cookie);
     getUserName();
   }, []);
-
-  function showPendingUsers() {
-    if (adminGroups) {
-      console.log("Hello Admin, here are your groups: " + adminGroups);
-    }
-  }
-  showPendingUsers();
 
   function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -97,6 +91,7 @@ export default function DashBoard({ loggedIn }) {
       {loggedIn && (
         <>
           {user !== "Not Signed In" && <div>Hello, {user}</div>}
+          <Admin adminGroups={adminGroups} />
 
           <form>
             <label htmlFor="groupName">Group Name: </label>
