@@ -7,7 +7,7 @@ export default function Message() {
     e.preventDefault();
     const currentText = text;
     setText("");
-    const response = await fetch("http://localhost:3000/api/message", {
+    const response = await fetch("http://localhost:3000/api/index", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

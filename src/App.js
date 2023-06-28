@@ -20,7 +20,7 @@ function App() {
     let cookieValue = getCookie("token");
     let token = cookieValue;
     console.log("Token:  " + token);
-    fetch("http://localhost:3000/api/message", {
+    fetch("http://localhost:3000/api/index", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

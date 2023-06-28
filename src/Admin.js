@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Admin({ adminGroups }) {
+  const [pendingUsers, setPendingUsers] = useState(0);
+
   const pendingUsersArray = []; //this is an array of objects, each with a pendingusers array and the group id
   useEffect(() => {
     fetchPendingUsers();
@@ -33,6 +35,7 @@ export default function Admin({ adminGroups }) {
           "Pending Users and the groups they are requesting to join",
           pendingUsersArray
         );
+        getNumberOfPendingUsers();
       });
   };
   function getCookie(name) {
@@ -40,13 +43,36 @@ export default function Admin({ adminGroups }) {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(";").shift();
   }
+  const getNumberOfPendingUsers = () => {
+    let pendingUsersCount = 0;
+    pendingUsersArray.forEach((item) => {
+      pendingUsersCount += item.users.length;
+    });
+    setPendingUsers(pendingUsersCount);
+  };
 
-  const groupsList = adminGroups.map((group) => <li key={group}>{group}</li>);
+  const getAllPendingUserDetails = async () => {
+    let cookieValue = getCookie("token");
+    let token = cookieValue;
+    fetch("http://localhost:3000/api/groups/pendingusers/details", {
+      method: "POST",
+      body: JSON.stringify(pendingUsersArray),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "bearer " + token,
+      },
+    }).then((response) => {
+      return response.json();
+    });
+  };
+
+  //const groupsList = adminGroups.map((group) => <li key={group}>{group}</li>);
 
   return (
-    <div>
-      <h1>Pending Requests: </h1>
-      {adminGroups && <ul>{groupsList}</ul>}
+    <div className="right-2 top-2 absolute">
+      {adminGroups.length > 0 && (
+        <h1 onClick={getAllPendingUserDetails}>{pendingUsers} Requests </h1>
+      )}
     </div>
   );
 }
