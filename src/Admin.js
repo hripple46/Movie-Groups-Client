@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState, useRef } from "react";
+import { ReactComponent as ApproveIcon } from "./img/approve.svg";
+import { ReactComponent as DenyIcon } from "./img/deny.svg";
 
 export default function Admin({ adminGroups }) {
   const [pendingUsers, setPendingUsers] = useState(0);
@@ -91,20 +93,32 @@ export default function Admin({ adminGroups }) {
   return (
     <div className="right-2 top-2 absolute">
       {adminGroups.length > 0 && (
-        <h1 onClick={getAllPendingUserDetails}>{pendingUsers} Requests </h1>
+        <h1
+          className="hover:cursor-pointer hover:bg-slate-600/25 p-2"
+          onClick={getAllPendingUserDetails}
+        >
+          {pendingUsers} Requests{" "}
+        </h1>
       )}
       {isListVisible && pendingUsersDetails.length > 0 && (
         <div
           ref={listRef}
-          className="absolute flex items-center justify-center h-[250px] w-[250px] top-2 right-0 bg-indigo-300/50 backdrop-blur-md"
+          className="absolute flex p-2 h-[250px] w-[250px] top-2 right-0 bg-slate-600/50 backdrop-blur-md"
         >
-          <ul>
+          <ul className="w-full">
             {pendingUsersDetails.map((item, index) =>
               item.Users.length === 0 ? null : (
-                <li key={index}>
-                  <h1>{item.Group}</h1>
+                <li className="w-full" key={index}>
+                  <h1 className="w-full border-b-2 border-slate-300">
+                    {item.Group} - {item.Users.length}
+                  </h1>
                   {item.Users.map((user, userIndex) => (
-                    <h2 key={userIndex}>{user}</h2>
+                    <div className="flex items-center" key={userIndex}>
+                      <h2 className="mr-2">{user}</h2>
+
+                      <ApproveIcon className="hover:fill-green-300" />
+                      <DenyIcon className="hover:fill-red-300" />
+                    </div>
                   ))}
                 </li>
               )
