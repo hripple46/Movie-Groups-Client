@@ -67,6 +67,7 @@ export default function Admin({ adminGroups }) {
   };
 
   const getAllPendingUserDetails = async () => {
+    setIsListVisible(true);
     let cookieValue = getCookie("token");
     let token = cookieValue;
     fetch("http://localhost:3000/api/groups/pendingusers/details", {
